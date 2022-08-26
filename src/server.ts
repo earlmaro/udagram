@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
-import { sequelize } from './sequelize';
 import { config } from './config/config';
 
 import { IndexRouter } from './controller/v0/index.router';
@@ -47,7 +46,8 @@ const c = config.dev;
   // Displays a simple message to the user
   app.get( "/", async ( req, res ) => {
     // res.send("try GET /filteredimage?image_url={{}}")
-    res.send("/api/v0/");
+    // res.send("/api/v0/");
+    res.status(201).send({ message: 'ok' });
   } );
   
 

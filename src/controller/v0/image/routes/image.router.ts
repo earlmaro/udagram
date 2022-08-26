@@ -17,6 +17,7 @@ router.get('/filteredimage',
         const url = AWS.getGetSignedUrl(filteredimage);
         filteredImage = await filterImageFromURL(url);
         res.sendFile(filteredImage);
+        await deleteLocalFiles([filteredImage])
     });
 
 
