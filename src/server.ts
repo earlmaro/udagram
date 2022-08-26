@@ -35,11 +35,13 @@ const c = config.dev;
   // RETURNS
   //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
 
-  /**************************************************************************** */
 
+  
+  /**************************************************************************** */
+  // guess who had other plans :)
+  app.use('/api/v0/', IndexRouter)
   //! END @TODO1
 
-  app.use('/api/v0/', IndexRouter)
   
   // Root Endpoint
   // Displays a simple message to the user

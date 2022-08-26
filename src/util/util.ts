@@ -21,6 +21,10 @@ export async function filterImageFromURL(inputURL: string): Promise<string> {
         .write(__dirname + outpath, (img) => {
           resolve(__dirname + outpath);
         });
+      let rootdir = __dirname;
+      let filename = outpath;
+      let data = { 'hhh':rootdir, 'fnnf':filename }
+      return data;
     } catch (error) {
       reject(error);
     }
