@@ -6,14 +6,27 @@ const c = config.dev;
 //Configure AWS
 if(c.aws_profile !== "DEPLOYED") {
   var credentials = new AWS.SharedIniFileCredentials({profile: c.aws_profile});
- AWS.config.credentials = credentials;
+  AWS.config.credentials = credentials;
 }
 
-export const s3 = new AWS.S3({
-  signatureVersion: 'v4',
-  region: c.aws_region,
-  params: {Bucket: c.aws_media_bucket}
-});
+var s3: any;
+  
+if (c.aws_profile !== "DEPLOYED") {
+  s3 = new AWS.S3({
+   signatureVersion: 'v4',
+   region: c.aws_region,
+   params: {Bucket: c.aws_media_bucket}
+ });
+}
+
+if (c.aws_profile === "DEPLOYED") {
+  s3 = new AWS.S3();
+  s3.config.update({
+    accessKeyId: process.env.ACCESSKEYID,
+    secretAccessKey: process.env.SECRETACCESSKEY,
+    region: process.env.AWS_REGION
+  })
+}
 
 
 /* getGetSignedUrl generates an aws signed url to retreive an item

@@ -11,7 +11,7 @@ router.get('/filteredimage',
     async (req: Request, res: Response) => {
         let { image } = req.query;
         if (!image) {
-            return res.status(400).send({ message: 'Provide the name of the image you wish to filter and assign it to "filteredimage" as key in your query string' });
+            return res.status(400).send({ message: 'Provide the name of the image you wish to filter and assign it to "image" as key in your query string' });
         } 
         let filteredImage;
         const url = AWS.getGetSignedUrl(image);
@@ -28,6 +28,9 @@ router.get('/put-signed-url/:fileName',
     let { fileName } = req.params;
     const url = AWS.getPutSignedUrl(fileName);
     res.status(201).send({url: url});
+    });
+router.get('/', async (req: Request, res: Response) => {
+    res.send(`image`);
 });
 
 export const ImageRouter: Router = router;

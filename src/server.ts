@@ -45,8 +45,7 @@ const c = config.dev;
   // Root Endpoint
   // Displays a simple message to the user
   app.get( "/", async ( req, res ) => {
-    res.send("try GET /filteredimage?image=me.jpg")
-    // res.status(201).send({ message: 'ok' });
+    res.send("try GET /api/v0/image/filteredimage/?image=me.jpg")
   } );
   
 
