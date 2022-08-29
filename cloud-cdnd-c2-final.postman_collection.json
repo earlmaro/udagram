@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "ac897e7e-33a5-4421-89a9-2d90ce9ab4f2",
+		"name": "cloud-cdnd-c2-final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11410854"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8082/filteredimage?image_url=https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg Copy",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{localhost}}/api/v0/image/filteredimage/?image_url=https://picsum.photos/200",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"api",
+						"v0",
+						"image",
+						"filteredimage",
+						""
+					],
+					"query": [
+						{
+							"key": "image_url",
+							"value": "https://picsum.photos/200"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8082/filteredimage?image_url=https://timedotcom.files.wordpress.com/2019/03/kitten-report.jpg",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{localhost}}/api/v0/image/get-signed-url-filteredimage/?image=me.jpg",
+					"host": [
+						"{{localhost}}"
+					],
+					"path": [
+						"api",
+						"v0",
+						"image",
+						"get-signed-url-filteredimage",
+						""
+					],
+					"query": [
+						{
+							"key": "image",
+							"value": "me.jpg"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localhost",
+			"value": "localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "livehost",
+			"value": "http://udagram-env.eba-mgxxu2ny.us-east-1.elasticbeanstalk.com",
+			"type": "string"
+		}
+	]
+}

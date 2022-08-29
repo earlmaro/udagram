@@ -6,7 +6,7 @@ import { filterImageFromURL, deleteLocalFiles } from '../../../../util/util';
 const router: Router = Router();
 
 // Get a signed url to get an image in the bucket and filter image
-router.get('/filter-bucket-image',
+router.get('/get-signed-url-filteredimage',
     // requireAuth, 
     async (req: Request, res: Response) => {
         let { image }: { image: string } = req.query
@@ -21,7 +21,7 @@ router.get('/filter-bucket-image',
     });
 
 // Get any public image and filter
-router.get('/filter-public-image',
+router.get('/filteredimage',
     // requireAuth, 
     async (req: Request, res: Response) => {
         let { image_url }: { image_url: string } = req.query
