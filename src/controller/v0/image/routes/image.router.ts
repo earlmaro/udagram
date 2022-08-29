@@ -6,7 +6,7 @@ import { filterImageFromURL, deleteLocalFiles } from '../../../../util/util';
 const router: Router = Router();
 
 // Get a signed url to get an image in the bucket and filter image
-router.get('/filteredimage',
+router.get('/filter-bucket-image',
     // requireAuth, 
     async (req: Request, res: Response) => {
         let { image }: { image: string } = req.query
@@ -20,17 +20,20 @@ router.get('/filteredimage',
         await deleteLocalFiles([filteredImage])
     });
 
-
-// Get a signed url to put a new item in the bucket
-router.get('/put-signed-url/:fileName', 
+// Get any public image and filter
+router.get('/filter-public-image',
     // requireAuth, 
     async (req: Request, res: Response) => {
-    let { fileName } = req.params;
-    const url = AWS.getPutSignedUrl(fileName);
-    res.status(201).send({url: url});
+        let { image_url }: { image_url: string } = req.query
+        if (!image_url) {
+            return res.status(400).send({ message: 'Provide the url of the image you wish to filter' });
+        }
+        let filteredImage: string;
+        // const url: string = AWS.getGetSignedUrl(image);
+        filteredImage = await filterImageFromURL(image_url);
+        res.sendFile(filteredImage);
+        await deleteLocalFiles([filteredImage])
     });
-router.get('/', async (req: Request, res: Response) => {
-    res.send(`image`);
-});
+
 
 export const ImageRouter: Router = router;
