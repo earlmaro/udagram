@@ -9,12 +9,12 @@ const router: Router = Router();
 router.get('/filteredimage',
     // requireAuth, 
     async (req: Request, res: Response) => {
-        let { image } = req.query;
+        let { image }: { image: string } = req.query
         if (!image) {
             return res.status(400).send({ message: 'Provide the name of the image you wish to filter and assign it to "image" as key in your query string' });
         } 
-        let filteredImage;
-        const url = AWS.getGetSignedUrl(image);
+        let filteredImage : string;
+        const url: string = AWS.getGetSignedUrl(image);
         filteredImage = await filterImageFromURL(url);
         res.sendFile(filteredImage);
         await deleteLocalFiles([filteredImage])
